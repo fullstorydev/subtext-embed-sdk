@@ -2,14 +2,14 @@
 // Dev convenience: mint an OAuth embed token and print an embed URL.
 //
 // Production integrations must call POST https://auth.fullstory.com/oauth/token
-// from the customer's backend (never from the browser). See embed/README.md.
+// from the partner's backend (never from the browser). See README.md.
 //
 // Usage:
 //   SUBTEXT_OAUTH_CLIENT_ID=... SUBTEXT_OAUTH_CLIENT_SECRET=... \
 //     node scripts/mint-token.mjs \
 //     --trace-url "https://app.fullstory.com/subtext/o-ABC/trace/tr-xyz"
 //
-//   SUBTEXT_AUTH_BASE=https://auth.fullstory.test:8043 node scripts/mint-token.mjs ...
+//   node scripts/mint-token.mjs ...
 
 import { parseArgs } from "node:util";
 

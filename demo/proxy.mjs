@@ -15,7 +15,7 @@
 //   SUBTEXT_AUTH_BASE         default https://auth.fullstory.com
 //
 // Run:
-//   cd embed && npm run build
+//   npm run build
 //   SUBTEXT_OAUTH_CLIENT_ID=... SUBTEXT_OAUTH_CLIENT_SECRET=... \
 //     SUBTEXT_AUTH_BASE=https://auth.fullstory.test:8043 \
 //     UPSTREAM_HOST=app.fullstory.test UPSTREAM_PORT=8043 ALLOW_INSECURE=1 \

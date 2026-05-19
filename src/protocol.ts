@@ -1,11 +1,5 @@
 // postMessage protocol between the host page (this SDK) and the embedded
-// Subtext iframe. Mirrors
-// packages/subtext-replay-ui/src/embed/protocol.ts in the mn monorepo —
-// keep the two in sync. Prefix is ST_ ("Subtext"), distinct from the
-// FS_ prefix used by the legacy @fullstory/embed-browser-sdk.
-//
-// Unknown message names are no-ops on both sides so new events can be
-// added without breaking older peers.
+// Subtext iframe.
 
 export interface TokenData {
   tokenType: 'Bearer';
