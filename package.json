@@ -35,8 +35,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fullstorydev/subtext.git",
-    "directory": "embed"
+    "url": "https://github.com/fullstorydev/subtext-embed-sdk.git"
   },
   "peerDependencies": {
     "react": ">=17"
