@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "description": "Host SDK for embedding the Subtext trace viewer — trace-scoped auth tokens via postMessage, React and vanilla entries.",
   "type": "module",
+  "sideEffects": false,
   "main": "./build/src/index.js",
   "types": "./build/src/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./build/src/index.d.ts",
@@ -33,9 +37,10 @@
     "react"
   ],
   "license": "MIT",
+  "homepage": "https://github.com/fullstorydev/subtext-embed-sdk",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fullstorydev/subtext-embed-sdk.git"
+    "url": "git+https://github.com/fullstorydev/subtext-embed-sdk.git"
   },
   "peerDependencies": {
     "react": ">=17"
@@ -47,12 +52,9 @@
   },
   "devDependencies": {
     "@types/node": "^22.19.19",
-    "@types/react": "^18.0.0",
-    "react": "^18.0.0",
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
     "tsx": "^4.20.6",
     "typescript": "^5.9.2"
-  },
-  "engines": {
-    "node": "^20.11.0 || ^22.12.0 || >=23"
   }
 }
