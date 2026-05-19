@@ -21,7 +21,8 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "node --test --test-force-exit build/tests/*.js",
+    "test": "tsx --test tests/*.test.ts",
+    "test:build": "npm run build && node --test --test-force-exit build/tests/*.js",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
@@ -49,6 +50,7 @@
     "@types/node": "^22.19.19",
     "@types/react": "^18.0.0",
     "react": "^18.0.0",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.2"
   },
   "engines": {
