@@ -1,6 +1,6 @@
 {
   "name": "@subtextdev/subtext-embed",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Host SDK for embedding the Subtext trace viewer — trace-scoped auth tokens via postMessage, React and vanilla entries.",
   "type": "module",
   "sideEffects": false,
