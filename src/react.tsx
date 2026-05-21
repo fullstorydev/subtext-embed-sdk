@@ -16,6 +16,10 @@ import { render as renderEmbed, type SubtextEmbedHandle } from './embed.js';
 import type { RefreshAuthTokenFunc } from './channel.js';
 import type { EmbedMode, EmbedErrorCode } from './protocol.js';
 
+function toCssSize(value: number | string): string {
+  return typeof value === 'number' ? `${value}px` : value;
+}
+
 export interface SubtextEmbedProps {
   traceUrl: string;
   refreshAuthToken: RefreshAuthTokenFunc;
@@ -96,18 +100,24 @@ export const SubtextEmbed: React.FC<SubtextEmbedProps> = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.traceUrl, props.allowedParentOrigin]);
 
+  const widthCss = props.width !== undefined ? toCssSize(props.width) : undefined;
+  const heightCss = props.height !== undefined ? toCssSize(props.height) : undefined;
+
   React.useEffect(() => {
     const parent = containerRef.current;
     if (!parent) return;
     const iframe = parent.querySelector('iframe');
     if (!iframe) return;
-    if (props.width !== undefined) {
-      iframe.style.width = typeof props.width === 'number' ? `${props.width}px` : props.width;
-    }
-    if (props.height !== undefined) {
-      iframe.style.height = typeof props.height === 'number' ? `${props.height}px` : props.height;
-    }
-  }, [props.width, props.height]);
+    if (widthCss !== undefined) iframe.style.width = widthCss;
+    if (heightCss !== undefined) iframe.style.height = heightCss;
+  }, [widthCss, heightCss]);
 
-  return <div ref={containerRef} className={props.className} style={props.style} />;
+  const containerStyle: React.CSSProperties = {
+    display: 'block',
+    width: widthCss,
+    height: heightCss,
+    ...props.style,
+  };
+
+  return <div ref={containerRef} className={props.className} style={containerStyle} />;
 };
