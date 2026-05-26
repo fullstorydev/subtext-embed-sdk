@@ -66,11 +66,20 @@ export async function render(opts: SubtextEmbedOptions): Promise<SubtextEmbedHan
   const parts = parseTraceUrl(opts.traceUrl);
   const allowedParentOrigin = resolveAllowedParentOrigin(opts.allowedParentOrigin);
 
-  // Mint the initial token. This runs synchronously so the iframe has a
-  // Bearer before its first render; without this the iframe would 401
-  // on every API call until its first TOKEN_REQUEST resolves.
-  const initial = await opts.refreshAuthToken();
-  const initialToken = typeof initial === 'string' ? initial : initial.token;
+  // Mint the initial token so the iframe has a Bearer before its first
+  // render. If minting fails, still mount the iframe (layout stays
+  // visible) and let the channel handle retries via TOKEN_REQUEST.
+  let initialToken: string | null;
+  try {
+    const initial = await opts.refreshAuthToken();
+    initialToken = typeof initial === 'string' ? initial : initial.token;
+  } catch (err) {
+    opts.onError?.({
+      code: 'auth_failed',
+      message: err instanceof Error ? err.message : String(err),
+    });
+    initialToken = null;
+  }
 
   const iframe = document.createElement('iframe');
   iframe.src = buildEmbedSrc(parts, { initialToken, allowedParentOrigin });
