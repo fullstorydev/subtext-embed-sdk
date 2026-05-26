@@ -12,11 +12,15 @@
   "exports": {
     ".": {
       "types": "./build/src/index.d.ts",
-      "import": "./build/src/index.js"
+      "import": "./build/src/index.js",
+      "require": "./build/src/index.cjs",
+      "default": "./build/src/index.js"
     },
     "./react": {
       "types": "./build/src/react.d.ts",
-      "import": "./build/src/react.js"
+      "import": "./build/src/react.js",
+      "require": "./build/src/react.cjs",
+      "default": "./build/src/react.js"
     }
   },
   "files": [
@@ -24,7 +28,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run build:cjs",
+    "build:cjs": "node scripts/build-cjs.mjs",
     "test": "tsx --test tests/*.test.ts",
     "test:build": "npm run build && node --test --test-force-exit build/tests/*.js",
     "prepublishOnly": "npm run build",
@@ -56,6 +61,7 @@
     "@changesets/cli": "^2.31.0",
     "@types/node": "^22.19.19",
     "@types/react": "^19.0.0",
+    "esbuild": "^0.28.0",
     "react": "^19.0.0",
     "tsx": "^4.20.6",
     "typescript": "^5.9.2"
